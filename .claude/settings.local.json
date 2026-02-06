@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sips:*)",
+      "Bash(xcodebuild:*)",
+      "Bash(open:*)",
+      "Bash(pkill:*)"
+    ]
+  }
+}
