@@ -26,10 +26,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSPopoverDelegate {
         }
 
         // Setup popover
-        popover.contentSize = NSSize(width: 280, height: 380)
+        popover.contentSize = NSSize(width: 300, height: 10)
         popover.behavior = .transient
+        popover.animates = true
         popover.delegate = self
-        popover.contentViewController = NSHostingController(rootView: PopoverView(manager: manager))
+        let hostingController = NSHostingController(rootView: PopoverView(manager: manager))
+        hostingController.sizingOptions = .preferredContentSize
+        popover.contentViewController = hostingController
 
         // Close popover when clicking outside
         eventMonitor = NSEvent.addGlobalMonitorForEvents(matching: [.leftMouseDown, .rightMouseDown]) { [weak self] _ in

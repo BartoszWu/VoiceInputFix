@@ -3,31 +3,33 @@ import SwiftUI
 struct StatusHeaderView: View {
     let isLocked: Bool
     let currentInputName: String
+    let preferredInputName: String?
+
+    private var accent: Color { Theme.accent(locked: isLocked) }
 
     var body: some View {
         HStack(spacing: 10) {
-            Circle()
-                .fill(isLocked ? Color.green : Color.orange)
-                .frame(width: 10, height: 10)
+            Image(systemName: isLocked ? "lock.fill" : "lock.open.fill")
+                .font(.system(size: 22))
+                .foregroundStyle(accent)
+                .frame(width: 28)
 
             VStack(alignment: .leading, spacing: 2) {
-                Text(isLocked ? "Input Locked" : "Using \(currentInputName)")
-                    .font(.system(size: 13, weight: .semibold))
-                    .foregroundColor(isLocked ? Color(red: 0.15, green: 0.55, blue: 0.25) : Color.orange)
+                if isLocked, let preferred = preferredInputName {
+                    Text("Input Locked to \(preferred)")
+                        .font(Theme.titleFont)
+                } else {
+                    Text("Input Unlocked")
+                        .font(Theme.titleFont)
+                }
 
-                Text(isLocked ? "Input is locked to preferred device." : "Input lock is off.")
-                    .font(.system(size: 11))
+                Text(isLocked ? "Protection is active." : "Input lock is off.")
+                    .font(Theme.captionFont)
                     .foregroundStyle(.secondary)
             }
 
             Spacer()
         }
-        .padding(12)
-        .background(
-            RoundedRectangle(cornerRadius: 8)
-                .fill(isLocked
-                      ? Color.green.opacity(0.1)
-                      : Color.orange.opacity(0.1))
-        )
+        .padding(.bottom, 4)
     }
 }

@@ -13,6 +13,12 @@
 		A10004 /* StatusHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20004; };
 		A10005 /* DevicePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20005; };
 		A10006 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A20006; };
+		A10007 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20008; };
+		A10008 /* DeviceInfoCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20009; };
+		A10009 /* SettingsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000A; };
+		A1000A /* SettingsToggleRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000B; };
+		A1000B /* SectionDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000C; };
+		A1000C /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000D; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +29,12 @@
 		A20005 /* DevicePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicePickerView.swift; sourceTree = "<group>"; };
 		A20006 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A20007 /* InputFix.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InputFix.entitlements; sourceTree = "<group>"; };
+		A20008 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		A20009 /* DeviceInfoCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoCard.swift; sourceTree = "<group>"; };
+		A2000A /* SettingsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCard.swift; sourceTree = "<group>"; };
+		A2000B /* SettingsToggleRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsToggleRow.swift; sourceTree = "<group>"; };
+		A2000C /* SectionDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionDivider.swift; sourceTree = "<group>"; };
+		A2000D /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		A30001 /* InputFix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InputFix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -53,6 +65,12 @@
 				A20003 /* PopoverView.swift */,
 				A20004 /* StatusHeaderView.swift */,
 				A20005 /* DevicePickerView.swift */,
+				A20008 /* Theme.swift */,
+				A20009 /* DeviceInfoCard.swift */,
+				A2000A /* SettingsCard.swift */,
+				A2000B /* SettingsToggleRow.swift */,
+				A2000C /* SectionDivider.swift */,
+				A2000D /* FooterView.swift */,
 				A20006 /* Assets.xcassets */,
 				A20007 /* InputFix.entitlements */,
 			);
@@ -141,6 +159,12 @@
 				A10003 /* PopoverView.swift in Sources */,
 				A10004 /* StatusHeaderView.swift in Sources */,
 				A10005 /* DevicePickerView.swift in Sources */,
+				A10007 /* Theme.swift in Sources */,
+				A10008 /* DeviceInfoCard.swift in Sources */,
+				A10009 /* SettingsCard.swift in Sources */,
+				A1000A /* SettingsToggleRow.swift in Sources */,
+				A1000B /* SectionDivider.swift in Sources */,
+				A1000C /* FooterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

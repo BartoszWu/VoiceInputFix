@@ -1,90 +1,68 @@
 import SwiftUI
 
+struct VisualEffectBackground: NSViewRepresentable {
+    func makeNSView(context: Context) -> NSVisualEffectView {
+        let view = NSVisualEffectView()
+        view.material = .popover
+        view.blendingMode = .behindWindow
+        view.state = .active
+        return view
+    }
+
+    func updateNSView(_ nsView: NSVisualEffectView, context: Context) {}
+}
+
 struct PopoverView: View {
     @Bindable var manager: AudioDeviceManager
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: 0) {
             // Status header
             StatusHeaderView(
                 isLocked: manager.isLocked,
-                currentInputName: manager.currentInputDevice?.name ?? "Unknown"
+                currentInputName: manager.currentInputDevice?.name ?? "Unknown",
+                preferredInputName: manager.preferredDevice?.name
             )
 
-            // Fix Mic Now button (only when not locked and has a preferred device)
+            // Fix Mic CTA (unlocked only)
             if !manager.isLocked && manager.preferredDevice != nil {
                 Button(action: { manager.fixMicNow() }) {
-                    HStack {
+                    HStack(spacing: 6) {
                         Image(systemName: "bolt.fill")
                         Text("Fix Mic Now")
                             .fontWeight(.medium)
                     }
                     .frame(maxWidth: .infinity)
-                    .padding(.vertical, 8)
+                    .padding(.vertical, 4)
                 }
                 .buttonStyle(.borderedProminent)
+                .padding(.bottom, 4)
             }
 
-            Divider()
+            SectionDivider()
 
-            // Current devices info
-            VStack(alignment: .leading, spacing: 6) {
-                HStack(spacing: 6) {
-                    Image(systemName: "mic.fill")
-                        .foregroundColor(manager.isLocked ? .primary : .orange)
-                        .frame(width: 16)
-                    Text("Input:")
-                        .foregroundStyle(.secondary)
-                    Text(manager.currentInputDevice?.name ?? "None")
-                        .foregroundColor(manager.isLocked ? .primary : .orange)
-                        .lineLimit(1)
-                }
-                .font(.system(size: 12))
-
-                HStack(spacing: 6) {
-                    Image(systemName: "headphones")
-                        .foregroundStyle(.secondary)
-                        .frame(width: 16)
-                    Text("Output:")
-                        .foregroundStyle(.secondary)
-                    Text(manager.currentOutputDevice?.name ?? "None")
-                        .foregroundStyle(.secondary)
-                        .lineLimit(1)
-                }
-                .font(.system(size: 12))
-            }
-
-            Divider()
-
-            // Input Lock toggle
-            Toggle("Input Lock", isOn: $manager.inputLockEnabled)
-                .toggleStyle(.switch)
-                .font(.system(size: 12, weight: .medium))
-
-            // Device picker
-            DevicePickerView(
-                devices: manager.inputDevices,
-                selectedUID: $manager.preferredInputUID
+            // Device info
+            DeviceInfoCard(
+                isLocked: manager.isLocked,
+                inputName: manager.currentInputDevice?.name ?? "None",
+                outputName: manager.currentOutputDevice?.name ?? "None"
             )
-            .font(.system(size: 12))
 
-            Toggle("Notifications", isOn: $manager.notificationsEnabled)
-                .toggleStyle(.switch)
-                .font(.system(size: 12, weight: .medium))
+            SectionDivider()
 
-            Toggle("Launch at Login", isOn: $manager.launchAtLogin)
-                .toggleStyle(.switch)
-                .font(.system(size: 12, weight: .medium))
+            // Settings
+            SettingsCard(manager: manager)
+
+            SectionDivider()
 
             Divider()
+                .padding(.bottom, 8)
 
-            Button("Quit InputFix") {
-                NSApplication.shared.terminate(nil)
-            }
-            .font(.system(size: 12))
-            .foregroundStyle(.secondary)
+            // Footer
+            FooterView()
         }
-        .padding(16)
-        .frame(width: 280)
+        .padding(Theme.outerPadding)
+        .frame(width: 300)
+        .background(VisualEffectBackground())
     }
 }
