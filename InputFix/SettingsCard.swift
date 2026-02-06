@@ -5,7 +5,6 @@ struct SettingsCard: View {
 
     var body: some View {
         VStack(spacing: Theme.rowSpacing) {
-            // Primary controls
             SettingsToggleRow(
                 icon: "shield.fill",
                 label: "Auto-Anchor Protection",
@@ -16,11 +15,12 @@ struct SettingsCard: View {
                 devices: manager.inputDevices,
                 selectedUID: $manager.preferredInputUID
             )
+        }
 
-            Divider()
-                .padding(.vertical, 2)
+        Divider()
+            .padding(.vertical, 8)
 
-            // Secondary controls
+        VStack(spacing: Theme.rowSpacing) {
             SettingsToggleRow(
                 icon: "bell.fill",
                 label: "Notifications",
@@ -33,10 +33,5 @@ struct SettingsCard: View {
                 isOn: $manager.launchAtLogin
             )
         }
-        .padding(Theme.groupPadding)
-        .background(
-            RoundedRectangle(cornerRadius: Theme.groupRadius)
-                .fill(Theme.groupBackground)
-        )
     }
 }

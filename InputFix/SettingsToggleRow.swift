@@ -12,10 +12,12 @@ struct SettingsToggleRow: View {
                 .frame(width: Theme.iconWidth, alignment: .center)
             Text(label)
                 .font(Theme.bodyFont)
-            Spacer()
+                .lineLimit(1)
+            Spacer(minLength: 0)
             Toggle("", isOn: $isOn)
                 .toggleStyle(.switch)
                 .labelsHidden()
+                .fixedSize()
         }
     }
 }

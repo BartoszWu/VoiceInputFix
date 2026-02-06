@@ -10,14 +10,16 @@ struct StatusHeaderView: View {
     var body: some View {
         HStack(spacing: 10) {
             Image(systemName: isLocked ? "lock.fill" : "lock.open.fill")
-                .font(.system(size: 22))
+                .font(.system(size: 20, weight: .medium))
                 .foregroundStyle(accent)
-                .frame(width: 28)
+                .frame(width: 24)
 
             VStack(alignment: .leading, spacing: 2) {
                 if isLocked, let preferred = preferredInputName {
                     Text("Input Locked to \(preferred)")
                         .font(Theme.titleFont)
+                        .lineLimit(1)
+                        .truncationMode(.tail)
                 } else {
                     Text("Input Unlocked")
                         .font(Theme.titleFont)
@@ -28,8 +30,7 @@ struct StatusHeaderView: View {
                     .foregroundStyle(.secondary)
             }
 
-            Spacer()
+            Spacer(minLength: 0)
         }
-        .padding(.bottom, 4)
     }
 }

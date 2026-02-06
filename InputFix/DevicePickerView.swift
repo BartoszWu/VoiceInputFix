@@ -9,10 +9,11 @@ struct DevicePickerView: View {
             Image(systemName: "arrow.down.circle")
                 .foregroundStyle(.secondary)
                 .frame(width: Theme.iconWidth, alignment: .center)
-            Text("Preferred Input")
+            Text("Input Device")
                 .font(Theme.bodyFont)
+                .lineLimit(1)
 
-            Spacer()
+            Spacer(minLength: 4)
 
             Picker("", selection: $selectedUID) {
                 Text("None").tag(String?.none)

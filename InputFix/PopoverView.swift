@@ -36,7 +36,7 @@ struct PopoverView: View {
                     .padding(.vertical, 4)
                 }
                 .buttonStyle(.borderedProminent)
-                .padding(.bottom, 4)
+                .padding(.top, 8)
             }
 
             SectionDivider()
@@ -53,16 +53,14 @@ struct PopoverView: View {
             // Settings
             SettingsCard(manager: manager)
 
-            SectionDivider()
-
             Divider()
-                .padding(.bottom, 8)
+                .padding(.vertical, Theme.sectionGap)
 
             // Footer
             FooterView()
         }
         .padding(Theme.outerPadding)
-        .frame(width: 300)
+        .frame(width: Theme.popoverWidth)
         .background(VisualEffectBackground())
     }
 }

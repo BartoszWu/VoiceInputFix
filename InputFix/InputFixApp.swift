@@ -26,7 +26,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSPopoverDelegate {
         }
 
         // Setup popover
-        popover.contentSize = NSSize(width: 300, height: 10)
+        popover.contentSize = NSSize(width: 320, height: 10)
         popover.behavior = .transient
         popover.animates = true
         popover.delegate = self

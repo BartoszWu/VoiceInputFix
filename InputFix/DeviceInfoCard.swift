@@ -20,11 +20,6 @@ struct DeviceInfoCard: View {
                 valueColor: .secondary
             )
         }
-        .padding(Theme.groupPadding)
-        .background(
-            RoundedRectangle(cornerRadius: Theme.groupRadius)
-                .fill(Theme.groupBackground)
-        )
     }
 
     private func deviceRow(icon: String, label: String, value: String, valueColor: Color) -> some View {
