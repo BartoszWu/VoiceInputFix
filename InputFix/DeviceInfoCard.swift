@@ -11,7 +11,7 @@ struct DeviceInfoCard: View {
                 icon: "mic.fill",
                 label: "Input:",
                 value: inputName,
-                valueColor: isLocked ? .primary : Theme.unlockedAccent
+                valueColor: isLocked ? Theme.lockedAccent : Theme.unlockedAccent
             )
             deviceRow(
                 icon: "headphones",

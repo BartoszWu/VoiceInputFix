@@ -24,6 +24,16 @@ struct DevicePickerView: View {
             .pickerStyle(.menu)
             .labelsHidden()
             .font(Theme.bodyFont)
+            .background(
+                Capsule()
+                    .fill(Theme.cardBackground)
+                    .overlay(
+                        Capsule()
+                            .strokeBorder(Theme.cardBorder, lineWidth: 0.5)
+                    )
+            )
         }
+        .padding(.horizontal, 4)
+        .padding(.vertical, 3)
     }
 }

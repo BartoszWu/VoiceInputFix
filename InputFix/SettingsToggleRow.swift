@@ -5,6 +5,8 @@ struct SettingsToggleRow: View {
     let label: String
     @Binding var isOn: Bool
 
+    @State private var isHovered = false
+
     var body: some View {
         HStack(spacing: 8) {
             Image(systemName: icon)
@@ -18,6 +20,17 @@ struct SettingsToggleRow: View {
                 .toggleStyle(.switch)
                 .labelsHidden()
                 .fixedSize()
+                .tint(Theme.lockedAccent)
+        }
+        .padding(.horizontal, 4)
+        .padding(.vertical, 3)
+        .background(
+            RoundedRectangle(cornerRadius: 6, style: .continuous)
+                .fill(isHovered ? Theme.hoverHighlight : .clear)
+        )
+        .animation(.easeInOut(duration: 0.15), value: isHovered)
+        .onHover { hovering in
+            isHovered = hovering
         }
     }
 }
