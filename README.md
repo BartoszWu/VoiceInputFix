@@ -2,6 +2,10 @@
 
 A lightweight macOS menu bar utility that prevents unwanted microphone input switching. When AirPods connect or another device tries to hijack your mic, InputFix automatically switches back to your preferred input device.
 
+<p align="center">
+  <img src="screenshot.png" width="320" alt="InputFix popover">
+</p>
+
 ## Features
 
 - **Auto-Anchor Protection** — Locks input to your preferred microphone and auto-reverts if another device takes over
