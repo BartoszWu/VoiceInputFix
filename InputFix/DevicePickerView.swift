@@ -5,35 +5,51 @@ struct DevicePickerView: View {
     @Binding var selectedUID: String?
 
     var body: some View {
-        HStack(spacing: 8) {
-            Image(systemName: "arrow.down.circle")
-                .foregroundStyle(.secondary)
-                .frame(width: Theme.iconWidth, alignment: .center)
-            Text("Input Device")
-                .font(Theme.bodyFont)
-                .lineLimit(1)
-
-            Spacer(minLength: 4)
-
-            Picker("", selection: $selectedUID) {
-                Text("None").tag(String?.none)
-                ForEach(devices) { device in
-                    Text(device.name).tag(Optional(device.uid))
+        VStack(spacing: 2) {
+            ForEach(devices) { device in
+                DevicePickerRow(
+                    name: device.name,
+                    isSelected: device.uid == selectedUID
+                ) {
+                    selectedUID = device.uid
                 }
             }
-            .pickerStyle(.menu)
-            .labelsHidden()
-            .font(Theme.bodyFont)
+        }
+    }
+}
+
+private struct DevicePickerRow: View {
+    let name: String
+    let isSelected: Bool
+    let action: () -> Void
+
+    @State private var isHovered = false
+
+    var body: some View {
+        Button(action: action) {
+            HStack(spacing: 8) {
+                Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
+                    .font(.system(size: 14, weight: .regular))
+                    .foregroundStyle(isSelected ? Theme.lockedAccent : Color.secondary.opacity(0.4))
+                    .frame(width: 16, alignment: .center)
+
+                Text(name)
+                    .font(Theme.bodyFont)
+                    .foregroundStyle(.primary)
+                    .lineLimit(1)
+
+                Spacer()
+            }
+            .padding(.horizontal, 8)
+            .padding(.vertical, 5)
             .background(
-                Capsule()
-                    .fill(Theme.cardBackground)
-                    .overlay(
-                        Capsule()
-                            .strokeBorder(Theme.cardBorder, lineWidth: 0.5)
-                    )
+                RoundedRectangle(cornerRadius: 5, style: .continuous)
+                    .fill(isHovered ? Theme.hoverHighlight : .clear)
             )
         }
-        .padding(.horizontal, 4)
-        .padding(.vertical, 3)
+        .buttonStyle(.plain)
+        .onHover { hovering in
+            isHovered = hovering
+        }
     }
 }

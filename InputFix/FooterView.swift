@@ -28,9 +28,10 @@ struct FooterView: View {
 
                 Spacer()
 
-                Text("v1.0")
+                Image(systemName: "info.circle")
                     .font(Theme.captionFont)
                     .foregroundStyle(.tertiary)
+                    .help("InputFix v1.0")
             }
         }
     }

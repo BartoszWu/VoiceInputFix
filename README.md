@@ -8,7 +8,8 @@ A lightweight macOS menu bar utility that prevents unwanted microphone input swi
 
 ## Features
 
-- **Auto-Anchor Protection** — Locks input to your preferred microphone and auto-reverts if another device takes over
+- **Lock Input** — Locks input to your preferred microphone and auto-reverts if another device takes over
+- **Restore Counter** — Tracks how many times InputFix has auto-restored your preferred device
 - **Manual Fix** — One-click "Fix Mic Now" button to instantly revert input
 - **Notifications** — Alerts when a mic switch is detected and corrected
 - **Launch at Login** — Start automatically via macOS Login Items
@@ -39,7 +40,7 @@ open build/Debug/InputFix.app
 1. InputFix lives in the menu bar (no Dock icon)
 2. Click the status icon to open the popover
 3. Select your preferred input device from the picker
-4. Enable **Auto-Anchor Protection**
+4. Enable **Lock Input**
 5. When another device tries to claim the input (e.g., AirPods connecting), InputFix detects the change via CoreAudio listeners and switches back automatically
 
 Settings are persisted via UserDefaults.
@@ -54,7 +55,7 @@ InputFix/
 ├── StatusHeaderView.swift     # Lock status header
 ├── DeviceInfoCard.swift       # Current input/output device display
 ├── DevicePickerView.swift     # Input device selector
-├── SettingsCard.swift         # Settings section with toggles & picker
+├── SettingsCard.swift         # DevicesCard & PreferencesCard sections
 ├── SettingsToggleRow.swift    # Reusable toggle row component
 ├── Theme.swift                # Design tokens (colors, fonts, spacing)
 ├── FooterView.swift           # Quit button & version

@@ -44,6 +44,10 @@ final class AudioDeviceManager {
         }
     }
 
+    private(set) var restoreCount: Int = 0 {
+        didSet { UserDefaults.standard.set(restoreCount, forKey: "restoreCount") }
+    }
+
     var isLocked: Bool {
         guard inputLockEnabled,
               let preferred = preferredInputUID,
@@ -59,6 +63,7 @@ final class AudioDeviceManager {
         preferredInputUID = UserDefaults.standard.string(forKey: "preferredInputUID")
         inputLockEnabled = UserDefaults.standard.object(forKey: "inputLockEnabled") as? Bool ?? true
         notificationsEnabled = UserDefaults.standard.bool(forKey: "notificationsEnabled")
+        restoreCount = UserDefaults.standard.integer(forKey: "restoreCount")
         launchAtLogin = SMAppService.mainApp.status == .enabled
         refreshDevices()
         installListeners()
@@ -220,6 +225,7 @@ final class AudioDeviceManager {
         let hijackerName = current.name
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
             self?.setDefaultInput(device: preferred)
+            self?.restoreCount += 1
             self?.sendNotification(switched: hijackerName, to: preferred.name)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self?.refreshDevices()

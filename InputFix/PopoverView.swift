@@ -59,7 +59,8 @@ struct PopoverView: View {
             StatusHeaderView(
                 isLocked: manager.isLocked,
                 currentInputName: manager.currentInputDevice?.name ?? "Unknown",
-                preferredInputName: manager.preferredDevice?.name
+                preferredInputName: manager.preferredDevice?.name,
+                restoreCount: manager.restoreCount
             )
 
             // Fix Mic CTA (unlocked only)
@@ -75,23 +76,19 @@ struct PopoverView: View {
                     .foregroundStyle(.secondary)
                     .padding(.leading, 2)
 
-                DeviceInfoCard(
-                    isLocked: manager.isLocked,
-                    inputName: manager.currentInputDevice?.name ?? "None",
-                    outputName: manager.currentOutputDevice?.name ?? "None"
-                )
-                .cardStyle()
+                DevicesCard(manager: manager)
+                    .cardStyle()
             }
             .padding(.top, Theme.cardSpacing + 4)
 
-            // SETTINGS section
+            // PREFERENCES section
             VStack(alignment: .leading, spacing: 6) {
-                Text("SETTINGS")
+                Text("PREFERENCES")
                     .font(Theme.sectionLabel)
                     .foregroundStyle(.secondary)
                     .padding(.leading, 2)
 
-                SettingsCard(manager: manager)
+                PreferencesCard(manager: manager)
                     .cardStyle()
             }
             .padding(.top, Theme.cardSpacing)

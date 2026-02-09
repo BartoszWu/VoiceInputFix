@@ -4,8 +4,18 @@ struct StatusHeaderView: View {
     let isLocked: Bool
     let currentInputName: String
     let preferredInputName: String?
+    let restoreCount: Int
 
     private var accent: Color { Theme.accent(locked: isLocked) }
+
+    private var subtitle: String {
+        guard isLocked else { return "Input lock is off." }
+        switch restoreCount {
+        case 0: return "Auto-restores if changed."
+        case 1: return "Auto-restored 1 time."
+        default: return "Auto-restored \(restoreCount) times."
+        }
+    }
 
     var body: some View {
         HStack(spacing: 12) {
@@ -24,15 +34,19 @@ struct StatusHeaderView: View {
                     Text("Input Locked to \(preferred)")
                         .font(Theme.titleFont)
                         .lineLimit(1)
-                        .truncationMode(.tail)
+                        .minimumScaleFactor(0.8)
                 } else {
                     Text("Input Unlocked")
                         .font(Theme.titleFont)
                 }
 
-                Text(isLocked ? "Protection is active." : "Input lock is off.")
+                Text(subtitle)
                     .font(Theme.captionFont)
-                    .foregroundStyle(isLocked ? .secondary : Theme.unlockedAccent)
+                    .foregroundStyle(
+                        isLocked && restoreCount >= 10
+                            ? Theme.lockedAccent.opacity(0.8)
+                            : isLocked ? .secondary : Theme.unlockedAccent
+                    )
             }
 
             Spacer(minLength: 0)
