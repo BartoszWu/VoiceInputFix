@@ -13,6 +13,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSPopoverDelegate {
     private var statusItem: NSStatusItem!
     private let popover = NSPopover()
     private let manager = AudioDeviceManager()
+    private let bluetoothManager = BluetoothManager()
     private var eventMonitor: Any?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
@@ -30,7 +31,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSPopoverDelegate {
         popover.behavior = .transient
         popover.animates = true
         popover.delegate = self
-        let hostingController = NSHostingController(rootView: PopoverView(manager: manager))
+        let hostingController = NSHostingController(rootView: PopoverView(manager: manager, bluetooth: bluetoothManager))
         hostingController.sizingOptions = .preferredContentSize
         popover.contentViewController = hostingController
 
@@ -46,9 +47,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSPopoverDelegate {
         } else if let button = statusItem.button {
             // Refresh devices before showing
             manager.refreshDevices()
+            bluetoothManager.refreshDevices()
             popover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
             // Ensure popover window can become key
             popover.contentViewController?.view.window?.makeKey()
         }
+    }
+
+    func applicationWillTerminate(_ notification: Notification) {
+        bluetoothManager.stopWatcher()
     }
 }

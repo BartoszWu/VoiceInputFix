@@ -30,7 +30,7 @@ final class AudioDeviceManager {
     var notificationsEnabled: Bool = false {
         didSet {
             UserDefaults.standard.set(notificationsEnabled, forKey: "notificationsEnabled")
-            if notificationsEnabled { requestNotificationPermission() }
+            if notificationsEnabled { Notifier.requestPermission() }
         }
     }
 
@@ -226,26 +226,10 @@ final class AudioDeviceManager {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
             self?.setDefaultInput(device: preferred)
             self?.restoreCount += 1
-            self?.sendNotification(switched: hijackerName, to: preferred.name)
+            Notifier.send(title: "Input Fixed", body: "\(hijackerName) → \(preferred.name)")
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self?.refreshDevices()
             }
         }
-    }
-
-    // MARK: - Notifications
-
-    private func requestNotificationPermission() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { _, _ in }
-    }
-
-    private func sendNotification(switched from: String, to: String) {
-        guard notificationsEnabled else { return }
-        let content = UNMutableNotificationContent()
-        content.title = "Input Fixed"
-        content.body = "\(from) → \(to)"
-        content.sound = .default
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
-        UNUserNotificationCenter.current().add(request)
     }
 }

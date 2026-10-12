@@ -52,6 +52,7 @@ struct FixMicButton: View {
 
 struct PopoverView: View {
     @Bindable var manager: AudioDeviceManager
+    @Bindable var bluetooth: BluetoothManager
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -80,6 +81,18 @@ struct PopoverView: View {
                     .cardStyle()
             }
             .padding(.top, Theme.cardSpacing + 4)
+
+            // BLUETOOTH section
+            VStack(alignment: .leading, spacing: 6) {
+                Text("BLUETOOTH")
+                    .font(Theme.sectionLabel)
+                    .foregroundStyle(.secondary)
+                    .padding(.leading, 2)
+
+                BluetoothCard(manager: bluetooth)
+                    .cardStyle()
+            }
+            .padding(.top, Theme.cardSpacing)
 
             // PREFERENCES section
             VStack(alignment: .leading, spacing: 6) {

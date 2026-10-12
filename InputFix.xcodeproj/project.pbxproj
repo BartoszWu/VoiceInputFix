@@ -19,6 +19,8 @@
 		A1000A /* SettingsToggleRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000B; };
 		A1000B /* SectionDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000C; };
 		A1000C /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000D; };
+		A1000D /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000E; };
+		A1000E /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000F; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		A2000B /* SettingsToggleRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsToggleRow.swift; sourceTree = "<group>"; };
 		A2000C /* SectionDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionDivider.swift; sourceTree = "<group>"; };
 		A2000D /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
+		A2000E /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
+		A2000F /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		A30001 /* InputFix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InputFix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -62,6 +66,8 @@
 			children = (
 				A20001 /* InputFixApp.swift */,
 				A20002 /* AudioDeviceManager.swift */,
+				A2000E /* BluetoothManager.swift */,
+				A2000F /* NotificationService.swift */,
 				A20003 /* PopoverView.swift */,
 				A20004 /* StatusHeaderView.swift */,
 				A20005 /* DevicePickerView.swift */,
@@ -165,6 +171,8 @@
 				A1000A /* SettingsToggleRow.swift in Sources */,
 				A1000B /* SectionDivider.swift in Sources */,
 				A1000C /* FooterView.swift in Sources */,
+				A1000D /* BluetoothManager.swift in Sources */,
+				A1000E /* NotificationService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,6 +241,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "InputFix uses Bluetooth to disconnect and reconnect your selected device when the display sleeps or wakes.";
 				INFOPLIST_KEY_NSMainNibFile = "";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.inputfix.app;
@@ -252,6 +261,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "InputFix uses Bluetooth to disconnect and reconnect your selected device when the display sleeps or wakes.";
 				INFOPLIST_KEY_NSMainNibFile = "";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.inputfix.app;
